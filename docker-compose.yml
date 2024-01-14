@@ -6,6 +6,8 @@ services:
             dockerfile: Dockerfile
         volumes:
             - 'CommonFiles:/usr/src/app/App42PaaS-Java-MySQL-Sample/target'
+        depends_on:
+            - base
     prod:
         build:
             context: ./Production
@@ -18,11 +20,14 @@ services:
             - 'CommonFiles:/usr/local/tomcat/webapps'
     base:
         build:
-            context: ./Production
+            context: ./Base
             dockerfile: Dockerfile
+        restart: always
+        environment:
+            MYSQL_DATABASE: 'java_db'
+            MYSQL_ROOT_PASSWORD: '_JavaAdmin@_'
         ports:
-             - '8080:8080'
-        depends_on:
-        
+             - '3306:3306'
+
 volumes:
     CommonFiles:
