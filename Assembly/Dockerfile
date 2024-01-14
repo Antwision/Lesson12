@@ -5,6 +5,6 @@ RUN apt update && apt install \
     &&  rm -rf /var/lib/apt/lists/*
 WORKDIR /usr/src/app/
 RUN git clone https://github.com/shephertz/App42PaaS-Java-MySQL-Sample.git
-WORKDIR /usr/src/app/App42PaaS-Java-MySQL-Sampl/
+WORKDIR /usr/src/app/App42PaaS-Java-MySQL-Sample/
 COPY Config.properties WebContent/
 RUN mvn package
